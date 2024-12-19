@@ -1,0 +1,16 @@
+.container {
+    padding: 10px;
+    background-color: green;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: row;
+    flex: 1 1 calc(25% - 10px);
+    box-sizing: border-box;
+    gap:10px
+}
+
+.labelAndValue{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}

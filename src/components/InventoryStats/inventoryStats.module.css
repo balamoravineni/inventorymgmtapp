@@ -1,0 +1,17 @@
+/* .container {
+
+} */
+
+.header {
+    text-align: left;
+    padding: 10px;
+    font-weight: 400;
+}
+
+.statsContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
