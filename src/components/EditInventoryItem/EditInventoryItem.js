@@ -12,10 +12,18 @@ const EditInventoryItem = ({ item, onClose, onSave }) => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
+    if(name==="price" || name==="value") {
+        setFormData((prevData) => ({
+            ...prevData,
+            [name]: `$${value===""?"0":value}`,
+          }));
+    }
+    else {
+        setFormData((prevData) => ({
+          ...prevData,
+          [name]: value,
+        }));
+    }
   };
 
   const handleSubmit = (e) => {
@@ -35,23 +43,24 @@ const EditInventoryItem = ({ item, onClose, onSave }) => {
           <div className={styles.formGroup}>
             <div className={styles.row}>
                 <div className={styles.column}>
-                    <label htmlFor="name">Name:</label>
+                    <label htmlFor="category">Category</label>
                     <input
                         type="text"
-                        id="name"
-                        name="name"
-                        value={formData.name}
+                        id="category"
+                        name="category"
+                        value={formData.category}
                         onChange={handleChange}
                         required
                     />
                 </div>
                 <div className={styles.column}>
-                    <label htmlFor="quantity">Quantity:</label>
+                    <label htmlFor="price">Price</label>
                     <input
-                        type="number"
-                        id="quantity"
-                        name="quantity"
-                        value={formData.quantity}
+                        type="text"
+                        id="price"
+                        name="price"
+                        // step="0.01"
+                        value={Number(formData.price.replace("$", ""))}
                         onChange={handleChange}
                         required
                     />
@@ -59,25 +68,24 @@ const EditInventoryItem = ({ item, onClose, onSave }) => {
             </div>
             <div className={styles.row}>
                 <div className={styles.column}>
-                    <label htmlFor="price">Price:</label>
+                    <label htmlFor="quantity">Quantity</label>
                     <input
-                        type="number"
-                        id="price"
-                        name="price"
-                        step="0.01"
-                        value={formData.price}
+                        type="text"
+                        id="quantity"
+                        name="quantity"
+                        value={formData.quantity}
                         onChange={handleChange}
                         required
                     />
                 </div>
                 <div className={styles.column}>
-                    <label htmlFor="description">Description:</label>
+                    <label htmlFor="value">Value</label>
                     <input
-                        type="number"
-                        id="price"
-                        name="price"
-                        step="0.01"
-                        value={formData.price}
+                        type="text"
+                        id="value"
+                        name="value"
+                        // step="0.01"
+                        value={Number(formData.value.replace("$", ""))}
                         onChange={handleChange}
                         required
                     />

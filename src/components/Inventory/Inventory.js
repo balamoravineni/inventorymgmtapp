@@ -23,7 +23,7 @@ const Inventory = ({role}) => {
         axios.get(`https://dev-0tf0hinghgjl39z.api.raw-labs.com/inventory`).then(response => {
             console.log(response.data);
             if(Array.isArray(response.data)) {
-                dispatch(addInventoryItems(inventoryMockData));
+                dispatch(addInventoryItems(response.data));
             }
             else {
                 // dispatch(addInventoryItems(inventoryMockData));
@@ -34,9 +34,9 @@ const Inventory = ({role}) => {
             console.error(err);
         })
 
-        setTimeout(()=> {
-            dispatch(addInventoryItems(inventoryMockData));
-        }, 2000)
+        // setTimeout(()=> {
+        //     dispatch(addInventoryItems(inventoryMockData));
+        // }, 2000)
     }, [])
 
     return (
