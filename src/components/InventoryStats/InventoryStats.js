@@ -11,15 +11,15 @@ const InventoryStats = () => {
 
     const inventoryData = useSelector((state) => state.inventory.items);
 
-    const totalProducts = inventoryData?.filter(item => !item.disabled).length || 0;
-    const totalStoreValue = inventoryData?.filter(item => !item.disabled).reduce((sum, item) => sum + Number(item.value.replace("$", "")), 0) || 0;
-    const outOfStocks = inventoryData?.filter(item => !item.disabled).filter(item => (item.quantity==null || item.quantity===0)).length || 0;
+    const totalProducts = inventoryData?.filter(item => !item.disabled).length || "-";
+    const totalStoreValue = inventoryData?.filter(item => !item.disabled).reduce((sum, item) => sum + Number(item.value.replace("$", "")), 0) || "-";
+    const outOfStocks = inventoryData?.filter(item => !item.disabled).filter(item => (item.quantity==null || item.quantity===0)).length || "-";
     const NumOfCategories = inventoryData?.filter(item => !item.disabled).reduce((unique, item) => {
         if (!unique.includes(item.category)) {
             unique.push(item.category);
         }
         return unique;
-    }, []).length || 0;
+    }, []).length || "-";
 
 
     return (

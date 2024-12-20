@@ -2,7 +2,8 @@ import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
     items: [],
-    isLoading: false
+    isLoading: false,
+    errorMessage: null,
   };
 
 const inventorySlice = createSlice({
@@ -10,7 +11,10 @@ const inventorySlice = createSlice({
   initialState: initialState,
   reducers: {
     setLoading(state, action) {
-      state.isLoading = action.payload
+      state.isLoading = action.payload;
+    },
+    setErrorMessage(state, action) {
+      state.errorMessage = action.payload;
     },
     addInventoryItems(state, action) {
       state.items = action.payload;
@@ -39,5 +43,5 @@ const inventorySlice = createSlice({
   }
 })
 
-export const { setLoading, addInventoryItems, editInventoryItem, deleteInventoryItem, toggleInventoryItem  } = inventorySlice.actions
+export const { setLoading, setErrorMessage, addInventoryItems, editInventoryItem, deleteInventoryItem, toggleInventoryItem  } = inventorySlice.actions
 export default inventorySlice.reducer
