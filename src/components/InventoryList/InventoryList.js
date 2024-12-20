@@ -8,6 +8,7 @@ import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { deleteInventoryItem, editInventoryItem, toggleInventoryItem } from '../../redux/inventorySlice';
+import CircularProgress from '@mui/material/CircularProgress';
 
 
 const InventoryList = ({role}) => {
@@ -15,6 +16,7 @@ const InventoryList = ({role}) => {
     const [selectedItemToEdit, setSelectedItemToEdit] = useState(null);
 
     const inventoryData = useSelector((state) => state.inventory.items);
+    const inventoryDataIsLoading = useSelector((state) => state.inventory.isLoading);
     const dispatch = useDispatch();
 
     const onEdit = (item) => {
@@ -44,34 +46,38 @@ const InventoryList = ({role}) => {
             onSave={handleSave}
         />
         )}
-      <table className={styles.table}>
-        <thead>
-          <tr>
-            <th className={styles.th}><div className={styles.columnName}>Name</div></th>
-            <th className={styles.th}><div className={styles.columnName}>Category</div></th>
-            <th className={styles.th}><div className={styles.columnName}>Price</div></th>
-            <th className={styles.th}><div className={styles.columnName}>Quantity</div></th>
-            <th className={styles.th}><div className={styles.columnName}>Value</div></th>
-            <th className={styles.th}><div className={styles.columnName}>Action</div></th>
-          </tr>
-        </thead>
-        <tbody>
-          {inventoryData.map((item) => (
-            <tr key={item.name} className={`${styles.tr} ${item.disabled?styles.disabled:''}`} >
-                <td className={styles.td}>{item.name}</td>
-                <td className={styles.td}>{item.category}</td>
-                <td className={styles.td}>{item.price}</td>
-                <td className={styles.td}>{item.quantity}</td>
-                <td className={styles.td}>{item.value}</td>
-                <td className={`${styles.td} ${styles.actionButtons}`}>
-                    <IconButton id={`edit-${item.name}`} disabled={role==="user" || item.disabled} onClick={()=> {onEdit(item)}}><EditIcon color={role==="user" || item.disabled?'':'success'}/></IconButton>
-                    <IconButton id={`view-${item.name}`} disabled={role==="user"} onClick={()=>onView(item)}>{item.disabled?<VisibilityOffIcon color={role==="user"?'':'secondary'}/>:<VisibilityIcon color={role==="user"?'':'secondary'}/>}</IconButton>
-                    <IconButton id={`delete-${item.name}`} disabled={role==="user" || item.disabled} onClick={()=>{onDelete(item)}}><DeleteIcon color={role==="user" || item.disabled?'':'error'}/> </IconButton>
-                </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+        {inventoryDataIsLoading?(
+            <CircularProgress className={styles.loader}/>
+        ):(
+            <table className={styles.table}>
+            <thead>
+              <tr>
+                <th className={styles.th}><div className={styles.columnName}>Name</div></th>
+                <th className={styles.th}><div className={styles.columnName}>Category</div></th>
+                <th className={styles.th}><div className={styles.columnName}>Price</div></th>
+                <th className={styles.th}><div className={styles.columnName}>Quantity</div></th>
+                <th className={styles.th}><div className={styles.columnName}>Value</div></th>
+                <th className={styles.th}><div className={styles.columnName}>Action</div></th>
+              </tr>
+            </thead>
+            <tbody>
+              {inventoryData.map((item) => (
+                <tr key={item.name} className={`${styles.tr} ${item.disabled?styles.disabled:''}`} >
+                    <td className={styles.td}>{item.name}</td>
+                    <td className={styles.td}>{item.category}</td>
+                    <td className={styles.td}>{item.price}</td>
+                    <td className={styles.td}>{item.quantity}</td>
+                    <td className={styles.td}>{item.value}</td>
+                    <td className={`${styles.td} ${styles.actionButtons}`}>
+                        <IconButton id={`edit-${item.name}`} disabled={role==="user" || item.disabled} onClick={()=> {onEdit(item)}}><EditIcon color={role==="user" || item.disabled?'':'success'}/></IconButton>
+                        <IconButton id={`view-${item.name}`} disabled={role==="user"} onClick={()=>onView(item)}>{item.disabled?<VisibilityOffIcon color={role==="user"?'':'secondary'}/>:<VisibilityIcon color={role==="user"?'':'secondary'}/>}</IconButton>
+                        <IconButton id={`delete-${item.name}`} disabled={role==="user" || item.disabled} onClick={()=>{onDelete(item)}}><DeleteIcon color={role==="user" || item.disabled?'':'error'}/> </IconButton>
+                    </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        )}
     </div>
   );
 };

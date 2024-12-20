@@ -4,6 +4,10 @@
     border-radius: 10px;
     background-color: #282c34;
   }
+
+  .loader {
+    margin: 100px;
+  }
   
   .table {
     width: 100%;

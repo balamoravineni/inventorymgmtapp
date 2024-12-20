@@ -1,6 +1,6 @@
 import React, {useEffect} from "react";
 import { useDispatch } from 'react-redux';
-import { addInventoryItems } from '../../redux/inventorySlice';
+import { addInventoryItems, setLoading } from '../../redux/inventorySlice';
 
 import axios from 'axios';
 import InventoryStats from "../InventoryStats/InventoryStats";
@@ -20,23 +20,28 @@ const Inventory = ({role}) => {
     const dispatch = useDispatch();
 
     useEffect(()=>{
+        dispatch(setLoading(true));
         axios.get(`https://dev-0tf0hinghgjl39z.api.raw-labs.com/inventory`).then(response => {
             console.log(response.data);
             if(Array.isArray(response.data)) {
                 dispatch(addInventoryItems(response.data));
+                dispatch(setLoading(false));
             }
             else {
                 // dispatch(addInventoryItems(inventoryMockData));
                 console.error(response.data);
+                dispatch(setLoading(false));
             }
         }).catch(err => {
             // dispatch(addInventoryItems(inventoryMockData));
             console.error(err);
+            dispatch(setLoading(false));
         })
 
         // setTimeout(()=> {
         //     dispatch(addInventoryItems(inventoryMockData));
-        // }, 2000)
+        //     dispatch(setLoading(false));
+        // }, 5000)
     }, [])
 
     return (
