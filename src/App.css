@@ -12,13 +12,17 @@ html, body {
 
 .App-header {
   background-color: #282c34;
-  display: flex;
   min-height: 40px;
-  align-items: center;
+  display: flex;
   justify-content: flex-end;
+  align-items: center;
   color: white;
   margin-left: auto;
-  gap: 5px;
+  gap: 0px;
   padding: 10px;
+}
+
+.admin-user-mode {
+  margin-right: 30px;
 }
 

@@ -1,16 +1,21 @@
 .container {
-    padding: 10px;
-    background-color: green;
-    border-radius: 5px;
+    padding: 25px;
+    background-color: #355E3B;
+    border-radius: 10px;
     display: flex;
     flex-direction: row;
-    flex: 1 1 calc(25% - 10px);
-    box-sizing: border-box;
-    gap:10px
+    gap:25px;
+    width: 25%;
 }
 
 .labelAndValue{
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 5px;
+    text-align: left;
+}
+
+.value {
+    font-size: xx-large;
+    font-weight: 700;
 }

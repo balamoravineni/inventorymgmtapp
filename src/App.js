@@ -13,13 +13,15 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <span>admin</span>
-        <IconButton onClick={()=>{
-          setRole(prevRole => {
-            return prevRole==="admin"?"user":"admin";
-          });
-        }}>{role==="admin"?<ToggleOffIcon fontSize="large"/>:<ToggleOnIcon color="primary" fontSize="large"/>}</IconButton>
-        <span>user</span>
+        <div className='admin-user-mode'>
+          <span>admin</span>
+          <IconButton onClick={()=>{
+            setRole(prevRole => {
+              return prevRole==="admin"?"user":"admin";
+            });
+          }}>{role==="admin"?<ToggleOffIcon fontSize="large"/>:<ToggleOnIcon color="primary" fontSize="large"/>}</IconButton>
+          <span>user</span>
+        </div>
         <IconButton onClick={()=>alert("Logout Clicked!")}><LogoutIcon /></IconButton>
       </header>
       <Inventory role={role} />

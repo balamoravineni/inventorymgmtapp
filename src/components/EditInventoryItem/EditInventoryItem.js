@@ -93,8 +93,8 @@ const EditInventoryItem = ({ item, onClose, onSave }) => {
             </div>
           </div>
           <div className={styles.actions}>
+            <div type="button" className={styles.cancelButton} onClick={onClose}>Cancel</div>
             <button type="submit" className={styles.saveButton}>Save</button>
-            <button type="button" className={styles.cancelButton} onClick={onClose}>Cancel</button>
           </div>
         </form>
       </div>

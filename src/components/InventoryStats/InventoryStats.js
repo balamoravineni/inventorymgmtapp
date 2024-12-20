@@ -26,10 +26,10 @@ const InventoryStats = () => {
         <div className={styles.container}>
         <h1 className={styles.header}>Inventory Stats</h1>
         <div className={styles.statsContainer}>
-            <StatisticCard icon={<ShoppingCartIcon />} label={"Total product"} value={totalProducts}/>
-            <StatisticCard icon={<CurrencyExchangeIcon />} label={"Total store value"} value={totalStoreValue}/>
-            <StatisticCard icon={<RemoveShoppingCartIcon />} label={"Out of stocks"} value={outOfStocks}/>
-            <StatisticCard icon={<CategoryIcon />} label={"No of Category"} value={NumOfCategories}/>
+            <StatisticCard icon={<ShoppingCartIcon fontSize="large"/>} label={"Total product"} value={totalProducts}/>
+            <StatisticCard icon={<CurrencyExchangeIcon fontSize="large"/>} label={"Total store value"} value={totalStoreValue}/>
+            <StatisticCard icon={<RemoveShoppingCartIcon fontSize="large"/>} label={"Out of stocks"} value={outOfStocks}/>
+            <StatisticCard icon={<CategoryIcon fontSize="large"/>} label={"No of Category"} value={NumOfCategories}/>
         </div>
         </div>
     )
