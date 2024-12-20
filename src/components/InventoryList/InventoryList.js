@@ -71,7 +71,7 @@ const InventoryList = ({role}) => {
                     <td className={`${styles.td} ${styles.actionButtons}`}>
                         <IconButton id={`edit-${item.name}`} disabled={role==="user" || item.disabled} onClick={()=> {onEdit(item)}}><EditIcon color={role==="user" || item.disabled?'':'success'}/></IconButton>
                         <IconButton id={`view-${item.name}`} disabled={role==="user"} onClick={()=>onView(item)}>{item.disabled?<VisibilityOffIcon color={role==="user"?'':'secondary'}/>:<VisibilityIcon color={role==="user"?'':'secondary'}/>}</IconButton>
-                        <IconButton id={`delete-${item.name}`} disabled={role==="user" || item.disabled} onClick={()=>{onDelete(item)}}><DeleteIcon color={role==="user" || item.disabled?'':'error'}/> </IconButton>
+                        <IconButton id={`delete-${item.name}`} disabled={role==="user"} onClick={()=>{onDelete(item)}}><DeleteIcon color={role==="user"?'':'error'}/> </IconButton>
                     </td>
                 </tr>
               ))}
