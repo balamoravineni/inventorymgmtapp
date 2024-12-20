@@ -2,6 +2,10 @@ import React from "react";
 import { useSelector } from 'react-redux';
 import StatisticCard from "../StatisticCard/StatisticCard";
 import styles from "./inventoryStats.module.css";
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import RemoveShoppingCartIcon from '@mui/icons-material/RemoveShoppingCart';
+import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
+import CategoryIcon from '@mui/icons-material/Category';
 
 const InventoryStats = () => {
 
@@ -22,10 +26,10 @@ const InventoryStats = () => {
         <div className={styles.container}>
         <h1 className={styles.header}>Inventory Stats</h1>
         <div className={styles.statsContainer}>
-            <StatisticCard icon={"cart"} label={"Total product"} value={totalProducts}/>
-            <StatisticCard icon={"dollar"} label={"Total store value"} value={totalStoreValue}/>
-            <StatisticCard icon={"no-cart"} label={"Out of stocks"} value={outOfStocks}/>
-            <StatisticCard icon={"category"} label={"No of Category"} value={NumOfCategories}/>
+            <StatisticCard icon={<ShoppingCartIcon />} label={"Total product"} value={totalProducts}/>
+            <StatisticCard icon={<CurrencyExchangeIcon />} label={"Total store value"} value={totalStoreValue}/>
+            <StatisticCard icon={<RemoveShoppingCartIcon />} label={"Out of stocks"} value={outOfStocks}/>
+            <StatisticCard icon={<CategoryIcon />} label={"No of Category"} value={NumOfCategories}/>
         </div>
         </div>
     )
