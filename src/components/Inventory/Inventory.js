@@ -8,13 +8,7 @@ import InventoryStats from "../InventoryStats/InventoryStats";
 import InventoryList from "../InventoryList/InventoryList";
 import { Alert } from "@mui/material";
 
-const inventoryMockData = [
-    { name: 'Laptop', category: 'Electronics', quantity: 5, price: "$5", value: "$25" },
-    { name: 'Chair', category: 'Furniture', quantity: 0, price: "$30", value: "0" },
-    { name: 'Notebook', category: 'Stationery', quantity: 100, price: "$70", value: "$7000" },
-    { name: 'Mobile Phone', category: 'Electronics', quantity: 10, price: "$25", value: "$250" },
-    { name: 'Pen', category: 'Stationery', quantity: 0, price: "$3", value: "0" },
-  ];
+const ERROR_MESSAGE = "There is a problem loading inventory data. Please refresh after sometime.";
 
 const Inventory = ({role}) => {
 
@@ -32,22 +26,15 @@ const Inventory = ({role}) => {
                 dispatch(setErrorMessage(null));
             }
             else {
-                // dispatch(addInventoryItems(inventoryMockData));
-                console.error(response.data);
-                dispatch(setErrorMessage("There is a problem loading inventory data"));
+                console.error("Error loading inventory data: " + response.data);
+                dispatch(setErrorMessage(ERROR_MESSAGE));
                 dispatch(setLoading(false));
             }
         }).catch(err => {
-            // dispatch(addInventoryItems(inventoryMockData));
-            console.error(err);
-            dispatch(setErrorMessage("There is a problem loading inventory data"));
+            console.error("Error loading inventory data: " + err);
+            dispatch(setErrorMessage(ERROR_MESSAGE));
             dispatch(setLoading(false));
         })
-
-        // setTimeout(()=> {
-        //     dispatch(addInventoryItems(inventoryMockData));
-        //     dispatch(setLoading(false));
-        // }, 5000)
     }, [])
 
     return (
