@@ -9,17 +9,20 @@ import CategoryIcon from '@mui/icons-material/Category';
 
 const InventoryStats = () => {
 
+
+    const inventoryDataLoading = useSelector((state) => state.inventory.isLoading);
+    const inventoryDataError = useSelector((state) => state.inventory.errorMessage);
     const inventoryData = useSelector((state) => state.inventory.items);
 
-    const totalProducts = inventoryData?.filter(item => !item.disabled).length || "-";
-    const totalStoreValue = inventoryData?.filter(item => !item.disabled).reduce((sum, item) => sum + Number(item.value.replace("$", "")), 0) || "-";
-    const outOfStocks = inventoryData?.filter(item => !item.disabled).filter(item => (item.quantity==null || item.quantity===0)).length || "-";
-    const NumOfCategories = inventoryData?.filter(item => !item.disabled).reduce((unique, item) => {
+    const totalProducts = (inventoryDataError || inventoryDataLoading)?"-":inventoryData?.filter(item => !item.disabled).length || 0;
+    const totalStoreValue = (inventoryDataError || inventoryDataLoading)?"-":inventoryData?.filter(item => !item.disabled).reduce((sum, item) => sum + Number(item.value.replace("$", "")), 0) || 0;
+    const outOfStocks = (inventoryDataError || inventoryDataLoading)?"-":inventoryData?.filter(item => !item.disabled).filter(item => (item.quantity==null || item.quantity===0)).length || 0;
+    const NumOfCategories = (inventoryDataError || inventoryDataLoading)?"-":inventoryData?.filter(item => !item.disabled).reduce((unique, item) => {
         if (!unique.includes(item.category)) {
             unique.push(item.category);
         }
         return unique;
-    }, []).length || "-";
+    }, []).length || 0;
 
 
     return (
